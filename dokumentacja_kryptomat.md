@@ -1,5 +1,5 @@
 
-# 📘 Dokumentacja projektu: KRYPTOMAT
+# Dokumentacja projektu: KRYPTOMAT
 
 ## 1. Charakterystyka oprogramowania
 
@@ -98,3 +98,25 @@ in the Software without restriction...
 - Można dodać lokalne bazy danych (np. SQLite, MongoDB) w przyszłości dla trwałości danych.
 
 ---
+
+### 5 Scenariusze testów
+
+1. **Test zakupu kryptowaluty**
+   - **Cel**: Sprawdzić, czy użytkownik może kupić kryptowalutę, jeśli ma wystarczająco środków.
+   - **Wejście**: Żądanie POST na endpoint `/api/buy` z danymi kryptowaluty i kwotą.
+   - **Oczekiwany wynik**: Status 200, portfel użytkownika zaktualizowany o nową kryptowalutę, saldo zmniejszone.
+
+2. **Test sprzedaży kryptowaluty**
+   - **Cel**: Sprawdzić, czy użytkownik może sprzedać kryptowalutę, jeśli ma ją w swoim portfelu.
+   - **Wejście**: Żądanie POST na endpoint `/api/sell` z danymi kryptowaluty i ilością.
+   - **Oczekiwany wynik**: Status 200, portfel użytkownika zaktualizowany (ilość kryptowaluty zmniejszona), saldo zwiększone.
+
+3. **Test błędu przy niewystarczającej ilości środków**
+   - **Cel**: Sprawdzić, czy aplikacja zwróci błąd, gdy użytkownik nie ma wystarczających środków na zakup.
+   - **Wejście**: Żądanie POST na endpoint `/api/buy` z danymi kryptowaluty i kwotą większą niż dostępne saldo.
+   - **Oczekiwany wynik**: Status 400 i komunikat o błędzie.
+
+4. **Test błędu przy niewystarczającej ilości kryptowaluty**
+   - **Cel**: Sprawdzić, czy aplikacja zwróci błąd, gdy użytkownik próbuje sprzedać więcej kryptowaluty, niż ma w portfelu.
+   - **Wejście**: Żądanie POST na endpoint `/api/sell` z danymi kryptowaluty i ilością większą niż dostępna w portfelu.
+   - **Oczekiwany wynik**: Status 400 i komunikat o błędzie.
