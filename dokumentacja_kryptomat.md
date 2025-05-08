@@ -7,26 +7,9 @@
 
 ---
 
-## 2. Prawa autorskie
+## 2. Specyfikacja wymagań
 
-Projekt **KRYPTOMAT** został stworzony w celach edukacyjnych przez zespół projektowy w ramach zajęć akademickich. Informacje przedstawione w projekcie są prywatnymi opiniami autorów i nie stanowią rekomendacji inwestycyjnych w rozumieniu Rozporządzenia Ministra Finansów z dnia 19 października 2005 roku w sprawie informacji stanowiących rekomendacje dotyczące instrumentów finansowych, ich emiterów lub wystawców (Dz. U. z 2005 roku, Nr 206, poz. 1715). Autorzy projektu nie ponoszą odpowiedzialności za decyzje inwestycyjne podjęte na podstawie materiałów zawartych w projektu, a słuchacz podejmuje decyzje inwestycyjne na własną odpowiedzialność.
-Kod źródłowy może być wykorzystywany i modyfikowany zgodnie z licencją [MIT](https://opensource.org/licenses/MIT):
-
-```
-MIT License
-
-Copyright (c) 2025 [Twoje Imię]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the “Software”), to deal
-in the Software without restriction...
-```
-
----
-
-## 3. Specyfikacja wymagań
-
-### 3.1 Wymagania funkcjonalne i niefunkcjonalne
+### 2.1 Wymagania funkcjonalne i niefunkcjonalne
 
 | ID  | Nazwa                            | Opis wymagania                                                                 | Typ             | Priorytet |
 |-----|----------------------------------|--------------------------------------------------------------------------------|------------------|-----------|
@@ -40,9 +23,9 @@ in the Software without restriction...
 
 ---
 
-## 4. Architektura i stos technologiczny
+## 3. Architektura i stos technologiczny
 
-### 4.1 Architektura uruchomieniowa (run-time)
+### 3.1 Architektura uruchomieniowa (run-time)
 
 **Typ:** Architektura klient-serwer
 
@@ -52,14 +35,14 @@ in the Software without restriction...
 
 ---
 
-### 4.2 Architektura testowa
+### 3.2 Architektura testowa
 
 - Testy manualne działania interfejsu użytkownika i poprawności logiki zakupów/sprzedaży
 - Możliwość dodania testów jednostkowych w `Jest` lub `Vitest` (frontend) i `Mocha`/`Supertest` (backend)
 
 ---
 
-### 4.3 Stos technologiczny
+### 3.3 Stos technologiczny
 
 | Warstwa         | Technologia         |
 |-----------------|---------------------|
@@ -71,7 +54,7 @@ in the Software without restriction...
 
 ---
 
-### 4.4 Procedura instalacji (lokalnie)
+### 3.4 Procedura instalacji (lokalnie)
 
 1. **Backend**:
    ```bash
@@ -91,7 +74,7 @@ in the Software without restriction...
 
 ---
 
-### 4.5 Procedura rozwoju
+### 3.5 Procedura rozwoju
 
 - Każda zmiana w kodzie powinna być zatwierdzana przez GitHub z krótkim opisem commita.
 - Zalecane jest wdrożenie testów jednostkowych dla logiki backendowej (`/api/buy`, `/api/sell`).
@@ -99,24 +82,28 @@ in the Software without restriction...
 
 ---
 
-### 5 Scenariusze testów
+## 4 Scenariusze testów
 
-1. **Test zakupu kryptowaluty**
+### 4.1 **Test zakupu kryptowaluty**
+
    - **Cel**: Sprawdzić, czy użytkownik może kupić kryptowalutę, jeśli ma wystarczająco środków.
    - **Wejście**: Żądanie POST na endpoint `/api/buy` z danymi kryptowaluty i kwotą.
    - **Oczekiwany wynik**: Status 200, portfel użytkownika zaktualizowany o nową kryptowalutę, saldo zmniejszone.
 
-2. **Test sprzedaży kryptowaluty**
+### 4.2 **Test sprzedaży kryptowaluty**
+
    - **Cel**: Sprawdzić, czy użytkownik może sprzedać kryptowalutę, jeśli ma ją w swoim portfelu.
    - **Wejście**: Żądanie POST na endpoint `/api/sell` z danymi kryptowaluty i ilością.
    - **Oczekiwany wynik**: Status 200, portfel użytkownika zaktualizowany (ilość kryptowaluty zmniejszona), saldo zwiększone.
 
-3. **Test błędu przy niewystarczającej ilości środków**
+### 4.3 **Test błędu przy niewystarczającej ilości środków**
+
    - **Cel**: Sprawdzić, czy aplikacja zwróci błąd, gdy użytkownik nie ma wystarczających środków na zakup.
    - **Wejście**: Żądanie POST na endpoint `/api/buy` z danymi kryptowaluty i kwotą większą niż dostępne saldo.
    - **Oczekiwany wynik**: Status 400 i komunikat o błędzie.
 
-4. **Test błędu przy niewystarczającej ilości kryptowaluty**
+### 4.4 **Test błędu przy niewystarczającej ilości kryptowaluty**
+
    - **Cel**: Sprawdzić, czy aplikacja zwróci błąd, gdy użytkownik próbuje sprzedać więcej kryptowaluty, niż ma w portfelu.
    - **Wejście**: Żądanie POST na endpoint `/api/sell` z danymi kryptowaluty i ilością większą niż dostępna w portfelu.
    - **Oczekiwany wynik**: Status 400 i komunikat o błędzie.
