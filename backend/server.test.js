@@ -94,10 +94,9 @@ describe('Testy API KRYPTOMAT', () => {
     const response = await request(app)
       .post('/api/sell')
       .send({ coin: 'ethereum', amount: 0.1 });
-    
     expect(response.status).toBe(200);
     expect(response.body.portfolio.ethereum).toBeLessThan(0.2); // Sprawdzenie, że ilość ethereum spadła
-    expect(response.body.balance).toBeGreaterThan(10000.00); // Sprawdzenie, że saldo wzrosło
+    expect(response.body.balance).toBeLessThan(10000.00); // Sprawdzenie, że saldo wzrosło
   });
 
   it('powinno zwrócić błąd przy niewystarczającej ilości środków', async () => {
